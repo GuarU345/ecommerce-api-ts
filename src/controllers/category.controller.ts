@@ -7,7 +7,7 @@ export class CategoryController {
   async create(req: Request, res: Response, next: NextFunction) {
     try {
       const create = await categoryService.createCategory(req.body);
-      return res.status(201).json(create);
+      return res.status(201).json({ create });
     } catch (error) {
       if (error instanceof Error) {
         return res.status(404).json(error.message);
@@ -18,10 +18,10 @@ export class CategoryController {
   async findAll(_req: Request, res: Response, next: NextFunction) {
     try {
       const categories = await categoryService.getAllCategories();
-      return res.json(categories);
+      return res.json({ count: categories.length, results: categories });
     } catch (error) {
       if (error instanceof Error) {
-        return res.status(404).json(error.message);
+        return res.status(404).json({ error: error.message });
       }
     }
   }

@@ -1,4 +1,5 @@
 import { prisma } from "../libs/prisma";
+import { EmptyResponseError } from "../middlewares/custom/errors";
 import { CategoryBody } from "../types/category";
 
 export class CategoryService {
@@ -19,8 +20,14 @@ export class CategoryService {
   async getAllCategories() {
     try {
       const categories = await prisma.category.findMany();
+      if (categories.length === 0) {
+        throw new EmptyResponseError("No se encontraron categorias");
+      }
       return categories;
     } catch (error) {
+      if (error instanceof EmptyResponseError) {
+        throw error;
+      }
       throw new Error("Error al intentar traer las categorias");
     }
   }
