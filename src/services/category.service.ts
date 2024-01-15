@@ -1,5 +1,8 @@
 import { prisma } from "../libs/prisma";
-import { EmptyResponseError } from "../middlewares/custom/errors";
+import {
+  EmptyResponseError,
+  PrismaCustomError,
+} from "../middlewares/custom/errors";
 import { CategoryBody } from "../types/category";
 
 export class CategoryService {
@@ -13,7 +16,8 @@ export class CategoryService {
       });
       return category;
     } catch (error) {
-      throw new Error("Error al intentar crear la categoria");
+      console.error(error);
+      throw new PrismaCustomError("Error al intentar crear la categoria");
     }
   }
 
@@ -28,7 +32,28 @@ export class CategoryService {
       if (error instanceof EmptyResponseError) {
         throw error;
       }
-      throw new Error("Error al intentar traer las categorias");
+      console.error(error);
+      throw new PrismaCustomError("Error al intentar traer las categorias");
+    }
+  }
+
+  async getCategoryById(id: string) {
+    try {
+      const category = await prisma.category.findUniqueOrThrow({
+        where: {
+          id,
+        },
+      });
+      if (!category) {
+        throw new EmptyResponseError("No se encontro la categoria");
+      }
+      return category;
+    } catch (error) {
+      if (error instanceof EmptyResponseError) {
+        throw error;
+      }
+      console.error(error);
+      throw new PrismaCustomError("Error al tratar de encontrar la categoria");
     }
   }
 }

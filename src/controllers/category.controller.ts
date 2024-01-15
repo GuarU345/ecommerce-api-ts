@@ -7,11 +7,9 @@ export class CategoryController {
   async create(req: Request, res: Response, next: NextFunction) {
     try {
       const create = await categoryService.createCategory(req.body);
-      return res.status(201).json({ create });
+      return res.status(201).json(create);
     } catch (error) {
-      if (error instanceof Error) {
-        return res.status(404).json(error.message);
-      }
+      next(error);
     }
   }
 
@@ -20,9 +18,17 @@ export class CategoryController {
       const categories = await categoryService.getAllCategories();
       return res.json({ count: categories.length, results: categories });
     } catch (error) {
-      if (error instanceof Error) {
-        return res.status(404).json({ error: error.message });
-      }
+      next(error);
+    }
+  }
+
+  async findOne(req: Request, res: Response, next: NextFunction) {
+    const { id } = req.params;
+    try {
+      const category = await categoryService.getCategoryById(id);
+      return res.json(category);
+    } catch (error) {
+      next(error);
     }
   }
 }
