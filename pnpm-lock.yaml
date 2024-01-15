@@ -5,22 +5,25 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@prisma/client':
+    specifier: 5.8.1
+    version: 5.8.1(prisma@5.8.1)
   prisma:
-    specifier: ^5.8.1
+    specifier: 5.8.1
     version: 5.8.1
 
 devDependencies:
   '@types/express':
-    specifier: ^4.17.21
+    specifier: 4.17.21
     version: 4.17.21
   '@types/node':
     specifier: 20.11.2
     version: 20.11.2
   express:
-    specifier: ^4.18.2
+    specifier: 4.18.2
     version: 4.18.2
   ts-node-dev:
-    specifier: ^2.0.0
+    specifier: 2.0.0
     version: 2.0.0(@types/node@20.11.2)(typescript@5.3.3)
   typescript:
     specifier: 5.3.3
@@ -50,6 +53,19 @@ packages:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
+
+  /@prisma/client@5.8.1(prisma@5.8.1):
+    resolution: {integrity: sha512-xQtMPfbIwLlbm0VVIVQY2yqQVOxPwRQhvIp7Z3m2900g1bu/zRHKhYZJQWELqmjl6d8YwBy0K2NvMqh47v1ubw==}
+    engines: {node: '>=16.13'}
+    requiresBuild: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      prisma: 5.8.1
+    dev: false
 
   /@prisma/debug@5.8.1:
     resolution: {integrity: sha512-tjuw7eA0Us3T42jx9AmAgL58rzwzpFGYc3R7Y4Ip75EBYrKMBA1YihuWMcBC92ILmjlQ/u3p8VxcIE0hr+fZfg==}
