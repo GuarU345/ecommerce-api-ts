@@ -14,4 +14,15 @@ export class CategoryController {
       }
     }
   }
+
+  async findAll(_req: Request, res: Response, next: NextFunction) {
+    try {
+      const categories = await categoryService.getAllCategories();
+      return res.json(categories);
+    } catch (error) {
+      if (error instanceof Error) {
+        return res.status(404).json(error.message);
+      }
+    }
+  }
 }

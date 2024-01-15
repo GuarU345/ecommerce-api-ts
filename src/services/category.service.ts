@@ -15,4 +15,13 @@ export class CategoryService {
       throw new Error("Error al intentar crear la categoria");
     }
   }
+
+  async getAllCategories() {
+    try {
+      const categories = await prisma.category.findMany();
+      return categories;
+    } catch (error) {
+      throw new Error("Error al intentar traer las categorias");
+    }
+  }
 }
