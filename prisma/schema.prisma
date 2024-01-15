@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String         @id @default(uuid())
+  username     String         @unique
+  email        String         @unique
+  password     String
+  created_at   DateTime       @default(now())
+  Token        Token[]
+  ShoppingCart ShoppingCart[]
+  Order        Order[]
+}
+
+model Token {
+  id           String   @id @default(uuid())
+  jwtSecretKey String   @unique
+  user_id      String
+  user         User     @relation(fields: [user_id], references: [id])
+  createdAt    DateTime @default(now())
+}
+
+model Category {
+  id      String    @id @default(uuid())
+  name    String    @unique
+  Product Product[]
+}
+
+model Product {
+  id                String             @id @default(uuid())
+  name              String             @unique
+  description       String
+  price             Float
+  image             String
+  category_id       String
+  category          Category           @relation(fields: [category_id], references: [id])
+  OrderDetail       OrderDetail[]
+  ShoppingCartItems ShoppingCartItem[]
+}
+
+model ShoppingCart {
+  id                String             @id @default(uuid())
+  date              DateTime           @default(now())
+  user_id           String
+  user              User               @relation(fields: [user_id], references: [id])
+  ShoppingCartItems ShoppingCartItem[]
+}
+
+model ShoppingCartItem {
+  id               String       @id @default(uuid())
+  product_id       String
+  product          Product      @relation(fields: [product_id], references: [id])
+  quantity         Int
+  total            Float
+  shopping_cart_id String
+  shopping_cart    ShoppingCart @relation(fields: [shopping_cart_id], references: [id])
+}
+
+model Order {
+  id          String        @id @default(uuid())
+  date        DateTime      @default(now())
+  user_id     String
+  user        User          @relation(fields: [user_id], references: [id])
+  total       Float
+  OrderDetail OrderDetail[]
+}
+
+model OrderDetail {
+  id         String  @id @default(uuid())
+  product_id String
+  product    Product @relation(fields: [product_id], references: [id])
+  quantity   Int
+  total      Float
+  order_id   String
+  order      Order   @relation(fields: [order_id], references: [id])
+}
