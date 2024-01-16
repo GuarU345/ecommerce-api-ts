@@ -14,7 +14,6 @@ export class CategoryService {
       });
       return category;
     } catch (error) {
-      console.error(error);
       throw new CustomError(
         "Error al intentar crear la categoria",
         STATUS_CODES.BAD_REQUEST
@@ -36,7 +35,7 @@ export class CategoryService {
       if (error instanceof CustomError) {
         throw error;
       }
-      console.error(error);
+
       throw new CustomError(
         "Error al intentar traer las categorias",
         STATUS_CODES.INTERNAL_SERVER_ERROR
@@ -56,7 +55,7 @@ export class CategoryService {
       if (error instanceof CustomError) {
         throw error;
       }
-      console.error(error);
+
       throw new CustomError(
         "Error al tratar de encontrar la categoria",
         STATUS_CODES.INTERNAL_SERVER_ERROR
@@ -80,7 +79,6 @@ export class CategoryService {
       });
       return update;
     } catch (error) {
-      console.error(error);
       throw new CustomError(
         "Error al tratar de actualizar la categoria",
         STATUS_CODES.INTERNAL_SERVER_ERROR

@@ -9,8 +9,10 @@ export const handleError = async (
   _next: NextFunction
 ) => {
   if (error instanceof CustomError) {
+    console.error(error);
     return res.status(error.status).json({ error: error.message });
   } else {
+    console.error(error);
     return res
       .status(STATUS_CODES.INTERNAL_SERVER_ERROR)
       .json({ error: "Algo salio mal" });

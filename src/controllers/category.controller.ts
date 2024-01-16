@@ -20,7 +20,7 @@ export class CategoryController {
         const category = await categoryService.getCategoryByName(
           name as string
         );
-        return res.json({ category });
+        return res.json(category);
       }
       const categories = await categoryService.getAllCategories();
       return res.json({ count: categories.length, results: categories });
