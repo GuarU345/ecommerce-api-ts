@@ -1,8 +1,8 @@
-import { categoryService } from "../controllers/category.controller";
 import { prisma } from "../libs/prisma";
 import { CustomError } from "../middlewares/custom/errors";
 import { ProductBody } from "../types/interfaces";
 import { STATUS_CODES } from "../utils/constants";
+import { categoryService } from "../utils/instances";
 
 export class ProductService {
   async createProduct(body: ProductBody) {

@@ -38,7 +38,7 @@ model Category {
 model Product {
   id                String             @id @default(uuid())
   name              String             @unique
-  description       String
+  description       String             @db.LongText()
   price             Float
   image             String
   category_id       String

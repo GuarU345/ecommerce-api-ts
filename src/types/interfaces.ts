@@ -9,3 +9,62 @@ export interface ProductBody {
   image: string;
   category_id: string;
 }
+
+export interface ShoppingCartBody {
+  user_id: string;
+}
+
+export interface ShoppingCartItemBody {
+  product_id: string;
+  quantity: number;
+  shopping_cart_id: string;
+}
+
+export interface UserBody {
+  username: string;
+  email: string;
+  password: string;
+}
+
+export interface ProductInShoppingCart {
+  shopping_cart_id: string;
+  quantity: number;
+  total: number;
+}
+
+export interface FakeStoreResponse {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: Category;
+  image: string;
+  rating: Rating;
+}
+
+export enum Category {
+  Electronics = "electronics",
+  Jewelery = "jewelery",
+  MenSClothing = "men's clothing",
+  WomenSClothing = "women's clothing",
+}
+
+export interface Rating {
+  rate: number;
+  count: number;
+}
+
+export interface ShoppingCartItem {
+  id: string;
+  product_id: string;
+  quantity: number;
+  total: number;
+  shopping_cart_id: string;
+}
+
+export interface ShoppingCart {
+  id: string;
+  date: Date;
+  user_id: string;
+  ShoppingCartItems: ShoppingCartItem[];
+}
