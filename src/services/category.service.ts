@@ -87,4 +87,22 @@ export class CategoryService {
       );
     }
   }
+
+  async deleteCategory(id: string) {
+    try {
+      const category = await this.getCategoryById(id);
+
+      const remove = await prisma.category.delete({
+        where: {
+          id: category.id,
+        },
+      });
+      return remove;
+    } catch (error) {
+      throw new CustomError(
+        "Error al tratar de eliminar la categoria",
+        STATUS_CODES.INTERNAL_SERVER_ERROR
+      );
+    }
+  }
 }
