@@ -7,5 +7,6 @@ const categoryController = new CategoryController();
 router.post("/categories", categoryController.create);
 router.get("/categories", categoryController.findAll);
 router.get("/categories/:id", categoryController.findOne);
+router.put("/categories/:id", categoryController.update);
 
 export const categoryRouter = router;

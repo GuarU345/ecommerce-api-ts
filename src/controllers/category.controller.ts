@@ -31,4 +31,14 @@ export class CategoryController {
       next(error);
     }
   }
+
+  async update(req: Request, res: Response, next: NextFunction) {
+    const { id } = req.params;
+    try {
+      const update = await categoryService.updateCategory(id, req.body);
+      return res.json(update);
+    } catch (error) {
+      next(error);
+    }
+  }
 }

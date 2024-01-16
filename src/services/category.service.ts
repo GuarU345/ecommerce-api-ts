@@ -63,4 +63,28 @@ export class CategoryService {
       );
     }
   }
+
+  async updateCategory(id: string, body: CategoryBody) {
+    const { name } = body;
+
+    try {
+      const category = await this.getCategoryById(id);
+
+      const update = await prisma.category.update({
+        data: {
+          name,
+        },
+        where: {
+          id: category.id,
+        },
+      });
+      return update;
+    } catch (error) {
+      console.error(error);
+      throw new CustomError(
+        "Error al tratar de actualizar la categoria",
+        STATUS_CODES.INTERNAL_SERVER_ERROR
+      );
+    }
+  }
 }
