@@ -1,0 +1,4 @@
+export const STATUS_CODES = {
+  BAD_REQUEST: 404,
+  INTERNAL_SERVER_ERROR: 500,
+};

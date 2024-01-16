@@ -1,13 +1,9 @@
-export class EmptyResponseError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "EmptyResponseError";
-  }
-}
-
-export class PrismaCustomError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "PrismaCustomError";
+export class CustomError extends Error {
+  public readonly message: string;
+  public readonly status: number;
+  constructor(message: string, status: number) {
+    super();
+    this.message = message;
+    this.status = status;
   }
 }
