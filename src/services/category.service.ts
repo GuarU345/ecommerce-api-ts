@@ -1,7 +1,7 @@
 import { prisma } from "../libs/prisma";
 import { CustomError } from "../middlewares/custom/errors";
 import { STATUS_CODES } from "../utils/constants";
-import { CategoryBody } from "../types/category";
+import { CategoryBody } from "../types/interfaces";
 
 export class CategoryService {
   async createCategory(body: CategoryBody) {
@@ -52,10 +52,6 @@ export class CategoryService {
       });
       return category;
     } catch (error) {
-      if (error instanceof CustomError) {
-        throw error;
-      }
-
       throw new CustomError(
         "Error al tratar de encontrar la categoria",
         STATUS_CODES.INTERNAL_SERVER_ERROR

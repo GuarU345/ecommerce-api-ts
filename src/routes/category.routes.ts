@@ -1,8 +1,7 @@
 import { Router } from "express";
-import { CategoryController } from "../controllers/category.controller";
+import { categoryController } from "../utils/instances";
 
 const router = Router();
-const categoryController = new CategoryController();
 
 router.post("/categories", categoryController.create);
 router.get("/categories", categoryController.findAll);

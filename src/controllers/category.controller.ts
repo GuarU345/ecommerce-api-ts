@@ -1,8 +1,5 @@
 import { NextFunction, Request, Response, response } from "express";
-import { CategoryService } from "../services/category.service";
-
-const categoryService = new CategoryService();
-
+import { categoryService } from "../utils/instances";
 export class CategoryController {
   async create(req: Request, res: Response, next: NextFunction) {
     try {
