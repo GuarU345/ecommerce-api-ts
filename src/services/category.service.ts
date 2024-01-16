@@ -105,4 +105,31 @@ export class CategoryService {
       );
     }
   }
+
+  async getCategoryByName(name: string) {
+    try {
+      const category = await prisma.category.findFirst({
+        where: {
+          name: {
+            contains: name,
+          },
+        },
+      });
+      if (!category) {
+        throw new CustomError(
+          "No se pudo encontrar la categoria",
+          STATUS_CODES.BAD_REQUEST
+        );
+      }
+      return category;
+    } catch (error) {
+      if (error instanceof CustomError) {
+        throw error;
+      }
+      throw new CustomError(
+        "Error al tratar de encontrar la categoria",
+        STATUS_CODES.INTERNAL_SERVER_ERROR
+      );
+    }
+  }
 }
