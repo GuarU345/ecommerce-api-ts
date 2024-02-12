@@ -172,7 +172,6 @@ export class ShoppingCartService {
 
       return {
         shopping_cart_id: shoppingCart.id,
-        total: shoppingCartInfo.total,
         count: shoppingCart.ShoppingCartItems.length,
         results: {
           products: shoppingCartInfo.products,
@@ -199,8 +198,6 @@ export class ShoppingCartService {
       },
     });
 
-    const prices = findProducts.map((product) => product.price);
-
     const productsInfo = shoppingCart.ShoppingCartItems.flatMap(
       (shoppingCartItem) => {
         return findProducts
@@ -209,6 +206,7 @@ export class ShoppingCartService {
               return {
                 ...product,
                 buy_quantity: shoppingCartItem.quantity,
+                total: getTotal(shoppingCartItem.quantity, product.price)
               };
             }
           })
@@ -218,7 +216,6 @@ export class ShoppingCartService {
 
     return {
       products: productsInfo,
-      total: getFinalTotal(prices),
     };
   }
 }

@@ -3,10 +3,10 @@ export const getTotal = (quantity: number, price: number) => {
   return total;
 };
 
-export const getFinalTotal = (prices: number[]) => {
+export const getFinalTotal = (totals: any) => {
   let total = 0;
-  for (let i = 0; i < prices.length; i++) {
-    total += prices[i];
+  for (let i = 0; i < totals.length; i++) {
+    total += totals[i];
   }
   return total;
 };
