@@ -74,6 +74,21 @@ export interface OrderBody {
   total: number
 }
 
+export interface OrderDetail {
+  id: string,
+  product_id: string,
+  quantity: number,
+  total: number,
+  order_id: string
+}
+
+export interface Order {
+  id: string,
+  date: Date,
+  user_id: string,
+  OrderDetails: OrderDetail[]
+}
+
 export interface OrderDetailBody {
   product_id: string,
   quantity: number,

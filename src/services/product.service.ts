@@ -137,4 +137,19 @@ export class ProductService {
       );
     }
   }
+
+  async findProductByIds(productIds: string[]) {
+    try {
+      const findProducts = await prisma.product.findMany({
+        where: {
+          id: {
+            in: productIds,
+          },
+        },
+      });
+      return findProducts
+    } catch (error) {
+      throw new CustomError("Error al tratar de encontrar los productos con esos ids", STATUS_CODES.INTERNAL_SERVER_ERROR)
+    }
+  }
 }

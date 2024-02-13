@@ -30,10 +30,20 @@ export class OrderController {
     async findOne(req: Request, res: Response, next: NextFunction) {
         const { id } = req.params;
         try {
-            const order = await orderService.getOrderById(id);
+            const order = await orderService.getOrderById({ id });
             return res.json(order);
         } catch (error) {
             next(error);
+        }
+    }
+
+    async getOrderInfo(req: Request, res: Response, next: NextFunction) {
+        const { id } = req.params
+        try {
+            const orderInfo = await orderService.getOrderInfo(id)
+            return res.json(orderInfo)
+        } catch (error) {
+            next(error)
         }
     }
 }
