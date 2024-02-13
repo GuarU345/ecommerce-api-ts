@@ -62,7 +62,7 @@ model ShoppingCartItem {
   quantity         Int
   total            Float
   shopping_cart_id String
-  shopping_cart    ShoppingCart @relation(fields: [shopping_cart_id], references: [id])
+  shopping_cart    ShoppingCart @relation(fields: [shopping_cart_id], references: [id], onDelete: Cascade)
 }
 
 model Order {
@@ -81,5 +81,5 @@ model OrderDetail {
   quantity   Int
   total      Float
   order_id   String
-  order      Order   @relation(fields: [order_id], references: [id])
+  order      Order   @relation(fields: [order_id], references: [id], onDelete: Cascade)
 }
