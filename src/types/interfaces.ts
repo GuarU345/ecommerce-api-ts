@@ -68,3 +68,15 @@ export interface ShoppingCart {
   user_id: string;
   ShoppingCartItems: ShoppingCartItem[];
 }
+
+export interface OrderBody {
+  user_id: string,
+  total: number
+}
+
+export interface OrderDetailBody {
+  product_id: string,
+  quantity: number,
+  total: number,
+  order_id: string
+}

@@ -7,10 +7,9 @@ import {
   ShoppingCartItemBody,
 } from "../types/interfaces";
 import { STATUS_CODES } from "../utils/constants";
-import { getFinalTotal, getTotal } from "../utils/functions";
+import { getTotal } from "../utils/functions";
 import {
   productService,
-  shoppingCartService,
   userService,
 } from "../utils/instances";
 
